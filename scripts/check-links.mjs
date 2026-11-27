@@ -1,0 +1,3 @@
+import {readFileSync} from 'node:fs';
+const b=JSON.parse(readFileSync(new URL('../src/config/brand.json',import.meta.url)));
+for(const [name,p] of Object.entries(b.profiles)){try{const r=await fetch(p.url,{method:'GET',redirect:'manual',signal:AbortSignal.timeout(Number(process.env.LINK_TIMEOUT_MS||15000))});const s=r.status;console.log(name,s,s===401||s===403?'authentication/access restricted':s===429?'rate limited':s>=300&&s<400?'redirect':s===404||s===410?'not found':s>=200&&s<300?'HTTP success (identity not verified)':'inconclusive');await r.body?.cancel();}catch(e){console.log(name,'network unavailable or timeout',e.message);}}

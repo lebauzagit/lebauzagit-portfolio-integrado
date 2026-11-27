@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {readFileSync} from 'node:fs';
+test('brand configuration',()=>assert.doesNotThrow(()=>execFileSync(process.execPath,['scripts/validate.mjs'])));
+test('deterministic generation and pending X link',()=>{execFileSync(process.execPath,['scripts/generate.mjs']);const path='brand/generated/github/README.md';const a=readFileSync(path,'utf8');execFileSync(process.execPath,['scripts/generate.mjs']);assert.equal(readFileSync(path,'utf8'),a);assert.ok(a.includes('https://www.linkedin.com/in/lebauzagit/'));assert.ok(!a.includes('https://x.com/lebauzagit'));});

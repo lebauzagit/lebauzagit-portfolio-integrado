@@ -1,0 +1,1 @@
+My frontend background gives me an end-to-end perspective on software development. I work with JavaScript and TypeScript across client applications, APIs, data persistence and asynchronous processing, with additional experience in C# and PHP. I value maintainability, reliability and understanding the problem before choosing a solution.

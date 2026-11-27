@@ -1,0 +1,351 @@
+---
+import { getCollection } from 'astro:content';
+// Component Imports
+// Page section components
+import GenericCard from '../components/GenericCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Pill from '../components/Pill.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+import TechnologyStack from '../components/TechnologyStack.astro';
+import Skills from '../components/Skills.astro';
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Content Fetching: List all work projects for the work section
+const allProjects = await getCollection('work');
+const projects = allProjects
+	.filter((project) => !(project.slug || '').startsWith('es/'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+// About section data
+const aboutCards = [
+	{
+		icon: 'code' as const,
+		title: t('about.background'),
+		content: [t('about.background.text1'), t('about.background.text2')]
+	},
+	{
+		icon: 'rocket-launch' as const,
+		title: t('about.education'),
+		content: [t('about.education.text1'), t('about.education.text2')]
+	},
+	{
+		icon: 'terminal-window' as const,
+		title: t('about.skills'),
+		content: `<strong>${t('about.skills.frontend')}:</strong> ${t('about.skills.frontend.text')}<br><strong>${t('about.skills.backend')}:</strong> ${t('about.skills.backend.text')}<br><strong>${t('about.skills.cloud')}:</strong> ${t('about.skills.cloud.text')}`
+	},
+	{
+		icon: 'heart' as const,
+		title: t('about.community'),
+		content: [t('about.community.text1'), t('about.community.text2')]
+	}
+];
+
+const aboutPhoto = {
+	src: '/assets/team.webp',
+	alt: 'Luis Enrique Bauza at work',
+	overlayText: '"Building the future, one line of code at a time"'
+};
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
+---
+
+<BaseLayout>
+	<div class="stack">
+		<!-- Smooth scrolling styles -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				// Handle smooth scrolling for anchor links
+				document.querySelectorAll('a[href*="#"]').forEach(function (anchor) {
+					anchor.addEventListener(
+						'click',
+						function (this: HTMLAnchorElement, e) {
+							const href = this.getAttribute('href');
+							if (!href) return;
+							const url = new URL(href, window.location.origin);
+							if (url.pathname !== window.location.pathname || !url.hash) return;
+							e.preventDefault();
+							const target = document.querySelector(url.hash);
+							if (target) {
+								target.scrollIntoView({
+									behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+									block: 'start',
+								});
+								window.history.replaceState(null, '', url.hash);
+							}
+						},
+					);
+				});
+
+				// Handle URL hash on page load
+				if (window.location.hash) {
+					const target = document.querySelector(window.location.hash);
+					if (target) {
+						setTimeout(() => {
+							target.scrollIntoView({
+								behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+								block: 'start',
+							});
+						}, 100);
+					}
+				}
+			});
+		</script>
+
+		<!-- Hero Section -->
+		<section id="home" class="wrapper stack gap-10">
+			<header class="hero">
+				<Hero
+					title={t('hero.title')} heading="h1"
+					tagline={t('hero.name') + ' ' + t('hero.tagline')}
+					align="start"
+				>
+					<div class="roles">
+						<Pill><Icon icon="code" size="1.33em" /> {t('hero.developer')}</Pill>
+						<Pill><Icon icon="microphone-stage" size="1.33em" /> {t('hero.speaker')}</Pill>
+						<Pill><Icon icon="pencil-line" size="1.33em" /> {t('hero.writer')}</Pill>
+					</div>
+				</Hero>
+
+				<img
+					alt="Luis Enrique Bauza smiling in a blue soot"
+					width="480"
+					height="620"
+					src="/assets/me-at-work.webp"
+				/>
+			</header>
+
+			<div id="skills" class="skills">
+				<Skills />
+ <TechnologyStack />
+			</div>
+		</section>
+
+		<!-- Work Section -->
+		<section id="projects" class="wrapper stack gap-10">
+			<div class="projects">
+				<Hero
+					title={t('projects.title')}
+					tagline={t('projects.tagline')}
+				/>
+				<section class="section with-background with-cta">
+					<div class="gallery">
+						<Grid variant="offset">
+							{
+								projects.map((project) => (
+									<li>
+										<PortfolioPreview project={project} lang={lang} />
+									</li>
+								))
+							}
+						</Grid>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section id="about" class="wrapper stack gap-10">
+			<GenericCard
+				title={t('about.title')}
+				tagline={t('about.tagline')}
+				cards={aboutCards}
+				photo={aboutPhoto}
+				gridColumns={2}
+			/>
+		</section>
+
+		<!-- Contact Section -->
+		<section id="contact" class="wrapper stack gap-10">
+			<div class="contact">
+				<Hero
+					title={t('contact.title')}
+					tagline={t('contact.subtitle')}
+				/>
+			</div>
+			<div class="contact-form">
+				<ContactForm />
+			</div>
+		</section>
+	</div>
+
+	<style>
+		html {
+			scroll-behavior: smooth;
+		}
+
+		/* Offset for fixed navbar when scrolling to sections */
+		section[id],
+		div[id] {
+			scroll-margin-top: 5rem;
+		}
+
+		@media (min-width: 50em) {
+			section[id],
+			div[id] {
+				scroll-margin-top: 5rem;
+			}
+		}
+	</style>
+
+	<style>
+		.hero {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 2rem;
+		}
+
+		.roles {
+			display: none;
+		}
+
+		.hero img {
+			aspect-ratio: 5 / 4;
+			object-fit: cover;
+			object-position: top;
+			border-radius: 1.5rem;
+			box-shadow: var(--shadow-md);
+			margin-top: 2rem;
+		}
+
+		@media (min-width: 50em) {
+			.hero {
+				display: grid;
+				grid-template-columns: 6fr 4fr;
+				padding-inline: 2.5rem;
+				gap: 3.75rem;
+			}
+
+			.roles {
+				margin-top: 0.5rem;
+				display: flex;
+				gap: 0.5rem;
+			}
+
+			.hero img {
+				aspect-ratio: 3 / 4;
+				border-radius: 4.5rem;
+				object-fit: cover;
+			}
+			.skills {
+				margin-bottom: 2rem;
+			}
+			.contact-form {
+				display: flex;
+				justify-content: center;
+			}
+		}
+
+		/* ====================================================== */
+
+		.section {
+			display: grid;
+			gap: 2rem;
+		}
+
+		.with-background {
+			position: relative;
+		}
+
+		.with-background::before {
+			--hero-bg: var(--bg-image-subtle-2);
+
+			content: '';
+			position: absolute;
+			pointer-events: none;
+			left: 50%;
+			width: 100vw;
+			aspect-ratio: calc(2.25 / var(--bg-scale));
+			top: 0;
+			transform: translateY(-75%) translateX(-50%);
+			background:
+				url('/assets/backgrounds/noise.png') top center/220px repeat,
+				var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+				var(--gray-999);
+			background-blend-mode: overlay, normal, normal, normal;
+			mix-blend-mode: var(--bg-blend-mode);
+			z-index: -1;
+		}
+
+		.with-background.bg-variant::before {
+			--hero-bg: var(--bg-image-subtle-1);
+		}
+
+		.section-header {
+			justify-self: center;
+			text-align: center;
+			max-width: 50ch;
+			font-size: var(--text-md);
+			color: var(--gray-300);
+		}
+
+		.section-header h3 {
+			font-size: var(--text-2xl);
+		}
+
+		@media (min-width: 50em) {
+			.section {
+				grid-template-columns: repeat(4, 1fr);
+				grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+				gap: 5rem;
+			}
+
+			.section.with-cta {
+				grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+			}
+
+			.section-header {
+				grid-area: header;
+				font-size: var(--text-lg);
+			}
+
+			.section-header h3 {
+				font-size: var(--text-4xl);
+			}
+
+			.with-cta .section-header {
+				justify-self: flex-start;
+				text-align: left;
+			}
+
+			.gallery {
+				grid-area: gallery;
+			}
+
+			.cta {
+				grid-area: cta;
+			}
+		}
+
+		/* ====================================================== */
+
+		.mention-card {
+			display: flex;
+			height: 7rem;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			border: 1px solid var(--gray-800);
+			border-radius: 1.5rem;
+			color: var(--gray-300);
+			background: var(--gradient-subtle);
+			box-shadow: var(--shadow-sm);
+		}
+
+		@media (min-width: 50em) {
+			.mention-card {
+				border-radius: 1.5rem;
+				height: 9.5rem;
+			}
+		}
+	</style>
+</BaseLayout>

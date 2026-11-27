@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "name": "Luis Bauza",
+  "handle": "lebauzagit",
+  "monogram": "LB",
+  "profiles": {
+    "github": {
+      "url": "https://github.com/lebauzagit",
+      "status": "confirmed"
+    },
+    "linkedin": {
+      "url": "https://www.linkedin.com/in/lebauzagit/",
+      "status": "user-confirmed"
+    },
+    "portfolio": {
+      "url": "https://lebauzagit.netlify.app",
+      "status": "user-confirmed"
+    },
+    "x": {
+      "url": "https://x.com/BauzaLuis88427",
+      "target": "https://x.com/lebauzagit",
+      "status": "pending-migration"
+    }
+  },
+  "palette": {
+    "primary": "#0D1726",
+    "accent": "#38BDF8",
+    "secondary": "#64748B",
+    "foreground": "#F8FAFC"
+  },
+  "avatar": "/assets/me-at-work.webp",
+  "stack": [
+    {
+      "id": "core",
+      "en": "Core stack",
+      "es": "Stack principal",
+      "items": [
+        "JavaScript",
+        "TypeScript",
+        "Node.js",
+        "NestJS",
+        "MongoDB",
+        "Redis",
+        "Vue.js",
+        "Nuxt"
+      ]
+    },
+    {
+      "id": "data",
+      "en": "Data & asynchronous systems",
+      "es": "Datos y sistemas asíncronos",
+      "items": [
+        "Mongoose",
+        "PostgreSQL",
+        "Prisma",
+        "TypeORM",
+        "BullMQ"
+      ]
+    },
+    {
+      "id": "frontend",
+      "en": "Frontend & experience",
+      "es": "Frontend y experiencia",
+      "items": [
+        "Astro",
+        "Nuxt UI",
+        "Tailwind CSS",
+        "Pinia",
+        "TanStack Query"
+      ]
+    },
+    {
+      "id": "backend",
+      "en": "API & security",
+      "es": "API y seguridad",
+      "items": [
+        "REST APIs",
+        "OpenAPI / Swagger",
+        "Passport.js",
+        "JWT"
+      ]
+    },
+    {
+      "id": "languages",
+      "en": "Additional languages",
+      "es": "Lenguajes complementarios",
+      "items": [
+        "C#",
+        "PHP"
+      ]
+    },
+    {
+      "id": "tooling",
+      "en": "Developer automation",
+      "es": "Automatización",
+      "items": [
+        "Git",
+        "GitHub Actions",
+        "Docker",
+        "Linux",
+        "PowerShell",
+        "pnpm",
+        "Playwright",
+        "Figma REST API",
+        "Nuxt Content",
+        "pdfmake",
+        "Codex",
+        "MCP"
+      ]
+    },
+    {
+      "id": "learning",
+      "en": "Currently exploring",
+      "es": "En aprendizaje",
+      "items": [
+        "Flutter",
+        "Dart",
+        "Distributed systems",
+        "Software architecture"
+      ]
+    }
+  ],
+  "identity": {
+    "en": {
+      "role": "Full Stack Developer",
+      "focus": "Backend Engineering & Software Architecture",
+      "tagline": "Beyond the interface. Into the architecture.",
+      "hero": "I build software beyond the interface.",
+      "bio": "Full Stack Developer focused on backend engineering, event-driven systems, software architecture and automation.",
+      "about": "My frontend background gives me an end-to-end perspective on software development. I work with JavaScript and TypeScript across client applications, APIs, data persistence and asynchronous processing, with additional experience in C# and PHP. I value maintainability, reliability and understanding the problem before choosing a solution.",
+      "headline": "Full Stack Developer | Backend Engineering | TypeScript, NestJS, Node.js & Vue.js | SaaS · Event-Driven Systems · Automation",
+      "xbio": "Full Stack Developer | Backend engineering & architecture | TypeScript · NestJS · Vue.js | Building, learning and sharing."
+    },
+    "es": {
+      "role": "Desarrollador Full Stack",
+      "focus": "Ingeniería backend y arquitectura de software",
+      "tagline": "Más allá de la interfaz. Hacia la arquitectura.",
+      "hero": "Construyo software más allá de la interfaz.",
+      "bio": "Desarrollador Full Stack orientado a la ingeniería backend, los sistemas orientados a eventos, la arquitectura de software y la automatización.",
+      "about": "Mi experiencia frontend me permite comprender el desarrollo de software de extremo a extremo. Trabajo con JavaScript y TypeScript en aplicaciones cliente, API, persistencia y procesamiento asíncrono, además de contar con experiencia en C# y PHP. Valoro la mantenibilidad, la fiabilidad y comprender el problema antes de elegir una solución.",
+      "headline": "Desarrollador Full Stack | Ingeniería backend | TypeScript, NestJS, Node.js y Vue.js | SaaS · Automatización",
+      "xbio": "Desarrollador Full Stack | Backend y arquitectura | TypeScript · NestJS · Vue.js | Aprender, construir y compartir."
+    }
+  },
+  "additionalProfiles": {
+    "instagram": {
+      "url": "https://www.instagram.com/lebauzart/",
+      "status": "source-only"
+    },
+    "youtube": {
+      "url": "https://www.youtube.com/channel/UCsKDu__EzNfLG62MPDVIPrg",
+      "status": "source-only"
+    }
+  },
+  "contact": {
+    "formEndpoint": "https://formsubmit.co/lebauzagit@gmail.com"
+  }
+}

@@ -1,0 +1,1 @@
+Mi experiencia frontend me permite comprender el desarrollo de software de extremo a extremo. Trabajo con JavaScript y TypeScript en aplicaciones cliente, API, persistencia y procesamiento asíncrono, además de contar con experiencia en C# y PHP. Valoro la mantenibilidad, la fiabilidad y comprender el problema antes de elegir una solución.
