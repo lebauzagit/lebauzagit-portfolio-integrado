@@ -8,5 +8,6 @@ const lang = getLangFromUrl(Astro.url);
 <div class="tech-grid">{brand.stack.map(group => <div class="tech-card"><h3>{group[lang]}</h3><ul>{group.items.map(item => <li>{item}</li>)}</ul></div>)}</div>
 </section>
 <style>
-.tech {margin-block: 3rem;}.tech h2 {font-size:calc(var(--text-2xl) * 0.6);margin-bottom:1rem;}.tech-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%, 18rem),1fr));gap:1rem;}.tech-card {border:1px solid var(--gray-800);border-radius:1rem;padding:1.25rem;background:var(--gray-999_40);}.tech-card h3 {font-weight:700;margin-bottom:.7rem;}.tech-card ul {display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;}.tech-card li {border:1px solid var(--gray-700);border-radius:.4rem;padding:.25rem .55rem;font-size:.875rem;}
+.tech {margin-block: 3rem;}.tech h2 {font-size:calc(var(--text-2xl) * 0.6);margin-bottom:1rem;}
+.tech-card h3 {font-size:calc(var(--text-2xl) * 0.6);font-weight:700;margin-bottom:.7rem;}.tech-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%, 18rem),1fr));gap:1rem;}.tech-card {border:1px solid var(--gray-800);border-radius:1rem;padding:1.25rem;background:var(--gray-999_40);}.tech-card ul {display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;}.tech-card li {border:1px solid var(--gray-700);border-radius:.4rem;padding:.25rem .55rem;font-size:.875rem;}
 </style>
