@@ -28,7 +28,13 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	{ label: 'YouTube', href: brand.additionalProfiles.youtube.url, icon: 'youtube-logo' },
 ];
 
-const currentLocation = Astro.url.pathname === `${prefix}/` ? `${prefix}/#home` : null;
+const { pathname } = Astro.url;
+let currentLocation: string | null = null;
+if (pathname === `${prefix}/`) {
+	currentLocation = `${prefix}/#home`;
+} else if (pathname.startsWith(`${prefix}/work/`)) {
+	currentLocation = `${prefix}/#projects`;
+}
 ---
 
 <nav>

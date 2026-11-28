@@ -12,7 +12,7 @@ function readOutput(path) {
   return readFileSync(new URL(path, dist), 'utf8');
 }
 
-function checkPage(path, englishPath) {
+function checkPage(path, englishPath, currentLocation) {
   const html = readOutput(`.${path}index.html`);
   const canonical = new URL(path, origin).href;
   const english = new URL(englishPath, origin).href;
@@ -25,18 +25,20 @@ function checkPage(path, englishPath) {
   assert.ok(html.includes(`<meta property="og:image" content="${socialImage}"`), path);
   const jsonLd = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
   assert.equal(JSON.parse(jsonLd?.[1] ?? '{}').url, origin, path);
+  const selectedLinks = html.matchAll(/<a\b(?=[^>]*\bclass="link")(?=[^>]*\baria-current="location")[^>]*\bhref="([^"]+)"/g);
+  assert.deepEqual(Array.from(selectedLinks, ([, href]) => href), [currentLocation], path);
   return html;
 }
 
 test('both homepages link to all four localized projects with canonical SEO', () => {
   for (const prefix of ['', '/es']) {
-    const home = checkPage(`${prefix}/`, '/');
+    const home = checkPage(`${prefix}/`, '/', `${prefix}/#home`);
     assert.ok(home.includes(`src="${brand.avatar}"`), prefix || '/');
     for (const slug of expectedProjects) {
       const englishPath = `/work/${slug}/`;
       const localizedPath = `${prefix}${englishPath}`;
       assert.ok(home.includes(`href="${localizedPath}"`), localizedPath);
-      checkPage(localizedPath, englishPath);
+      checkPage(localizedPath, englishPath, `${prefix}/#projects`);
     }
   }
 });
