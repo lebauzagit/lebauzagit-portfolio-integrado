@@ -2,6 +2,8 @@
 
 ## 2026-11-27
 
+Updated the YouTube channel link to the user-confirmed `@lebauzagit` handle in the brand configuration and generated identity. `pnpm test`, `pnpm check`, and `pnpm build` passed. Verified the new-tab link on all ten generated pages with navigation.
+
 Updated external links in navigation, contact, the footer, and both YLG Studio pages to open in a new tab. `pnpm test`, `pnpm check`, and `pnpm build` passed. Verified 76 external links and 101 internal links across the 11 generated pages.
 
 Replaced the FormSubmit contact form on both homepages with LinkedIn, Instagram messaging and profile links, and the GitHub profile. Updated the Instagram handle to the user-confirmed `lebauzagit` in the brand configuration and generated identity. Corrected English project links to `/#contact`. `pnpm test`, `pnpm check`, and `pnpm build` passed. Verified the localized contact links on both homepages and all eight generated project pages. Instagram chat delivery was not tested.

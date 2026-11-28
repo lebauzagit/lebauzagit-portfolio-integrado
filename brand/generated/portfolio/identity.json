@@ -17,7 +17,7 @@
       "status": "user-confirmed"
     },
     "x": {
-      "url": "https://x.com/BauzaLuis88427",
+      "url": "https://x.com/lebauzagit",
       "target": "https://x.com/lebauzagit",
       "status": "pending-migration"
     }
@@ -149,8 +149,8 @@
       "status": "user-confirmed"
     },
     "youtube": {
-      "url": "https://www.youtube.com/channel/UCsKDu__EzNfLG62MPDVIPrg",
-      "status": "source-only"
+      "url": "https://www.youtube.com/@lebauzagit",
+      "status": "user-confirmed"
     }
   }
 }
