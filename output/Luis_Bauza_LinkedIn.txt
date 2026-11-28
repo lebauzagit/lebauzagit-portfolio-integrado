@@ -1,0 +1,31 @@
+LINKEDIN PROFILE UPDATE
+
+ENGLISH
+
+Headline
+Full Stack Developer | Backend Engineering | TypeScript, Node.js & NestJS | Vue, Nuxt & Astro
+
+About
+I’m a full stack developer focused on backend engineering and software architecture. My frontend background helps me connect what users do in an interface with how the underlying APIs, data, and background jobs support it.
+
+I work with TypeScript, Node.js, and NestJS on the backend, and with Vue, Nuxt, and Astro on the frontend. My work spans REST APIs, data persistence, and asynchronous processing with PostgreSQL, MongoDB, Redis, and BullMQ.
+
+For AIMove Hub, I collaborated with the frontend team on a transportation and logistics platform and contributed to its documentation for web and mobile users. For YLG Studio Nails, I built a bilingual Astro website that connects a service catalog and photo gallery with online booking.
+
+Portfolio
+https://lebauzagit.vercel.app/
+
+ESPAÑOL
+
+Titular
+Desarrollador Full Stack | Ingeniería backend | TypeScript, Node.js y NestJS | Vue, Nuxt y Astro
+
+Acerca de
+Soy desarrollador full stack con foco en ingeniería backend y arquitectura de software. Mi experiencia frontend me ayuda a conectar lo que una persona hace en la interfaz con las API, los datos y las tareas en segundo plano que lo hacen posible.
+
+Trabajo con TypeScript, Node.js y NestJS en backend, y con Vue, Nuxt y Astro en frontend. Mi trabajo abarca API REST, persistencia de datos y procesamiento asíncrono con PostgreSQL, MongoDB, Redis y BullMQ.
+
+En AIMove Hub colaboré con el equipo frontend de una plataforma de transporte y logística y contribuí a su documentación para web y móvil. Para YLG Studio Nails desarrollé un sitio bilingüe con Astro que conecta un catálogo de servicios y una galería de fotos con la reserva de citas en línea.
+
+Portafolio
+https://lebauzagit.vercel.app/es/

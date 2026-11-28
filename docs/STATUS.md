@@ -2,6 +2,10 @@
 
 ## 2026-11-28
 
+Aligned the English and Spanish AIMove Hub and AIMove Hub User Guide case studies with the CV's contributor framing. Revised descriptions, introductions, and cards to describe team context, frontend contributions, and web and mobile documentation. Removed unverified metrics and compliance claims from the case studies, retained existing images and routes, and linked the two projects within each language. All four pnpm checks passed, and verified the collaboration copy, project links, and screenshots in all four generated pages.
+
+Prepared an English one-page, project-based CV and English and Spanish LinkedIn headline and About drafts. By the owner's direction, both AIMove projects describe collaborative contributions. The CV covers AIMove Hub, its web and mobile user guide, and YLG Studio Nails. Verified the PDF visually, checked all six embedded links, and opened the editable RTF for content verification. The files are local under `output/`.
+
 After profile PR #1 was merged, added Astro to the header badges in [draft PR #2](https://github.com/lebauzagit/lebauzagit/pull/2). Astro already appears in the public README's frontend table. Verified the SVG badge and the one-line draft diff.
 
 Opened [draft PR #1](https://github.com/lebauzagit/lebauzagit/pull/1) in the GitHub profile repository. It aligns the headline and introduction with the brand, replaces the old LinkedIn URL, adds the Vercel portfolio link, and lists Astro in the frontend stack. Verified the draft only changes the profile README. The profile repository's main branch, account bio, and website settings are unchanged.
