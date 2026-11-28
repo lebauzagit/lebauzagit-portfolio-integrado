@@ -1,0 +1,89 @@
+---
+import Hero from './Hero.astro';
+import Icon from './Icon.astro';
+import brand from '../config/brand.json';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+const { linkedin, github } = brand.profiles;
+const { instagram } = brand.additionalProfiles;
+---
+
+<section id="contact" class="wrapper stack gap-4" aria-label={t('contact.title')}>
+	<Hero title={t('contact.title')} tagline={t('contact.subtitle')} />
+	<div class="contact-links">
+		<a class="contact-link contact-link-primary" href={linkedin.url} target="_blank" rel="noopener noreferrer">
+			<Icon icon="linkedin-logo" size="1.25rem" />
+			{t('contact.linkedin')}
+		</a>
+		<a class="contact-link" href={instagram.messageUrl} target="_blank" rel="noopener noreferrer">
+			<Icon icon="instagram-logo" size="1.25rem" />
+			{t('contact.instagram')}
+		</a>
+		<a class="contact-link" href={github.url} target="_blank" rel="noopener noreferrer">
+			<Icon icon="github-logo" size="1.25rem" />
+			{t('contact.github')}
+		</a>
+	</div>
+	<p class="instagram-profile">
+		<a href={instagram.url} target="_blank" rel="noopener noreferrer">{t('contact.instagramProfile')}</a>
+	</p>
+</section>
+
+<style>
+	.contact-links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+
+	.contact-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		min-height: 2.75rem;
+		padding: 0.625rem 1rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 0.75rem;
+		background: var(--gray-999);
+		color: var(--gray-100);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.contact-link-primary {
+		border-color: var(--accent-regular);
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+	}
+
+	.contact-link:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.contact-link:focus-visible {
+		outline: 2px solid var(--accent-regular);
+		outline-offset: 3px;
+	}
+
+	.instagram-profile {
+		text-align: center;
+		font-size: var(--text-sm);
+	}
+
+	.instagram-profile a {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	@media (max-width: 32rem) {
+		.contact-links {
+			flex-direction: column;
+			width: min(100%, 20rem);
+			margin-inline: auto;
+		}
+	}
+</style>

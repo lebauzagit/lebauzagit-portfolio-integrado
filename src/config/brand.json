@@ -17,7 +17,7 @@
       "status": "user-confirmed"
     },
     "x": {
-      "url": "https://x.com/BauzaLuis88427",
+      "url": "https://x.com/lebauzagit",
       "target": "https://x.com/lebauzagit",
       "status": "pending-migration"
     }
@@ -144,15 +144,13 @@
   },
   "additionalProfiles": {
     "instagram": {
-      "url": "https://www.instagram.com/lebauzart/",
-      "status": "source-only"
+      "url": "https://www.instagram.com/lebauzagit/",
+      "messageUrl": "https://ig.me/m/lebauzagit",
+      "status": "user-confirmed"
     },
     "youtube": {
       "url": "https://www.youtube.com/channel/UCsKDu__EzNfLG62MPDVIPrg",
       "status": "source-only"
     }
-  },
-  "contact": {
-    "formEndpoint": "https://formsubmit.co/lebauzagit@gmail.com"
   }
 }

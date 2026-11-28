@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 // Component Imports
 // Page section components
 import GenericCard from '../components/GenericCard.astro';
-import ContactForm from '../components/ContactForm.astro';
+import ContactLinks from '../components/ContactLinks.astro';
 import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
@@ -163,18 +163,7 @@ const aboutPhoto = {
 			/>
 		</section>
 
-		<!-- Contact Section -->
-		<section id="contact" class="wrapper stack gap-10">
-			<div class="contact">
-				<Hero
-					title={t('contact.title')}
-					tagline={t('contact.subtitle')}
-				/>
-			</div>
-			<div class="contact-form">
-				<ContactForm />
-			</div>
-		</section>
+		<ContactLinks />
 	</div>
 
 	<style>
@@ -238,10 +227,6 @@ const aboutPhoto = {
 			}
 			.skills {
 				margin-bottom: 2rem;
-			}
-			.contact-form {
-				display: flex;
-				justify-content: center;
 			}
 		}
 
