@@ -2,6 +2,8 @@
 
 ## 2026-11-28
 
+Rechecked the scroll highlight against public Vercel and the local build. Vercel still served the earlier navigation script, which left About active at the bottom. The local update now shares the active background across desktop and mobile, isolates it from hover and focus colors, and selects Contact once its midpoint enters the viewport. Chrome verified the actual background color while scrolling down and back up through all four sections in both languages and themes. All four pnpm checks passed. Deployment remains pending.
+
 Fixed the top navigation scroll highlight on both homepages. Selection follows the visible section, restores Home on return to the top, and reaches a short Contact section once it fits in the viewport or the page reaches the bottom. Verified all four sections in Chrome in both languages at desktop and mobile widths, plus direct section links and keyboard focus. `pnpm test`, `pnpm check`, `pnpm build`, and `pnpm test:build` passed.
 
 Verified the production Vercel deployment after the canonical update. Root `/robots.txt` and `/sitemap.xml` respond with HTTP 200. Requests with a trailing slash redirect to the file URLs with HTTP 308, and their `/es/` variants return HTTP 404. `/work/ylgstudio` redirects to the trailing-slash page. The robots file references the Vercel sitemap, which lists ten canonical URLs. The old Netlify URLs for robots and sitemap still return HTTP 404.
