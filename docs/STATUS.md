@@ -2,6 +2,10 @@
 
 ## 2026-11-28
 
+After profile PR #1 was merged, added Astro to the header badges in [draft PR #2](https://github.com/lebauzagit/lebauzagit/pull/2). Astro already appears in the public README's frontend table. Verified the SVG badge and the one-line draft diff.
+
+Opened [draft PR #1](https://github.com/lebauzagit/lebauzagit/pull/1) in the GitHub profile repository. It aligns the headline and introduction with the brand, replaces the old LinkedIn URL, adds the Vercel portfolio link, and lists Astro in the frontend stack. Verified the draft only changes the profile README. The profile repository's main branch, account bio, and website settings are unchanged.
+
 Kept Projects selected in the top navigation on all localized Work detail pages. The build test checks the initial selection on both homepages and all eight project routes. Verified the selected background at the top, middle, and bottom of representative English and Spanish projects in Chrome on desktop and mobile. All four pnpm checks passed.
 
 Rechecked the scroll highlight against public Vercel and the local build. Vercel still served the earlier navigation script, which left About active at the bottom. The local update now shares the active background across desktop and mobile, isolates it from hover and focus colors, and selects Contact once its midpoint enters the viewport. Chrome verified the actual background color while scrolling down and back up through all four sections in both languages and themes. All four pnpm checks passed. Deployment remains pending.
