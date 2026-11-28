@@ -156,6 +156,27 @@ img {
 	height: auto;
 }
 
+.project-body {
+	--project-content-gap: 1.5rem;
+}
+
+.project-body,
+.project-body .project-card-copy {
+	display: flex;
+	flex-direction: column;
+}
+
+.project-body,
+.project-body .project-card-group,
+.project-body .project-card-copy {
+	row-gap: var(--project-content-gap);
+}
+
+.project-body .project-card-group > section,
+.project-body .project-card-copy > p {
+	margin-block: 0;
+}
+
 a {
 	color: var(--link-color);
 }

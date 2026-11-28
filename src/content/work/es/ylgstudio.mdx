@@ -1,16 +1,86 @@
 ---
-title: YLGStudio
+title: YLG Studio Nails
 publishDate: 2024
 img: /assets/YLG_Dark.webp
-img_alt: YLGStudio branding and portfolio showcase
+img_alt: Página de inicio de YLG Studio Nails
 description: |
-  YLGStudio
-tags: []
+  Desarrollé en Astro un sitio bilingüe para un estudio de uñas en Brandon, Florida, con una galería adaptable, un catálogo de servicios compartido y reservas desde el móvil.
+tags:
+  - Astro
+  - TypeScript
+  - Sitio web bilingüe
+  - Negocio local
 ---
 
-## YLGStudio
+import GenericCard from '../../../components/GenericCard.astro'
 
-![YLGStudio Modo Claro](/assets/YLG_Light.webp alt="YLGStudio Light Mode")
-![YLGStudio Modo Oscuro](/assets/YLG_Dark.webp alt="YLGStudio Dark Mode")
+export const projectCards = [
+	{
+		title: "Arquitectura frontend con Astro",
+		icon: "rocket-launch",
+		content: [
+			"La portada se compone de módulos Astro para la galería, los servicios destacados, los artículos y la reserva. La página de inicio, el catálogo, el contacto y el blog comparten la cabecera, el pie de página y la lógica de metadatos.",
+			"Pequeños scripts en el navegador se encargan de recorrer la galería y mostrar la barra de reservas en móvil cuando corresponde."
+		]
+	},
+	{
+		title: "Fotografía adaptable",
+		icon: "atom",
+		content: [
+			"Usé el componente de imágenes de Astro para servir variantes WebP de varios anchos. Cada imagen declara cuánto espacio ocupa en la página para que el navegador elija un archivo adecuado para esa pantalla.",
+			"La foto principal tiene prioridad de carga y las que aparecen más abajo se cargan al acercarse al área visible. Los pies de foto y el texto alternativo están disponibles en los dos idiomas."
+		]
+	},
+	{
+		title: "Catálogo con datos compartidos",
+		icon: "stack",
+		content: [
+			"El catálogo usa tipos de TypeScript para definir el precio y la duración de cada manicura y pedicura. El listado completo, los destacados de la portada y los datos estructurados consultan los mismos registros. Así, un cambio de precio se actualiza en un solo lugar.",
+			"Cada destacado enlaza a su entrada del catálogo. Si a una clienta le interesa el esmaltado en gel, puede llegar directamente a ese servicio desde la portada."
+		]
+	},
+	{
+		title: "Rutas bilingües y SEO",
+		icon: "code",
+		content: [
+			"Astro organiza el contenido en inglés y español bajo /en/ y /es/. La plantilla compartida declara el idioma, la URL canónica y los enlaces a la otra versión para que cada página tenga su propia dirección.",
+			"El sitio publica un sitemap y datos estructurados NailSalon con la ubicación del estudio, los servicios destacados y el enlace de reserva."
+		]
+	},
+	{
+		title: "Reservas desde el móvil",
+		icon: "technologies",
+		content: [
+			"En móvil, una barra compacta aparece cuando los botones principales de reserva quedan fuera de la vista. La opción de reservar sigue a mano mientras alguien explora la galería o lee sobre un tratamiento.",
+			"El enlace dirige al proveedor de reservas del estudio, donde se puede elegir el tratamiento y consultar los horarios disponibles."
+		]
+	},
+	{
+		title: "Blog y contacto local",
+		icon: "experience",
+		content: [
+			"Astro renderiza los artículos del blog en el servidor y permite enlazar sus traducciones cuando ambas versiones están publicadas. La portada muestra artículos recientes junto a los servicios del estudio.",
+			"La página de contacto reúne indicaciones para llegar, teléfono, correo y redes sociales para quienes quieren resolver una duda o ubicar el estudio antes de reservar."
+		]
+	}
+]
 
-Entrada mínima - detalles completos del proyecto disponibles bajo solicitud.
+## Desarrollo en Astro de un sitio bilingüe orientado a reservas
+
+Desarrollé el sitio web de **YLG Studio Nails**, un estudio de manicura y pedicura en Brandon, Florida. Una clienta puede llegar con un diseño en mente, un presupuesto definido o una tarde libre. Organicé el sitio para que pueda empezar por las fotos, comparar tratamientos por precio y duración, y consultar la disponibilidad en español o inglés.
+
+El reto técnico era hacer fácil de recorrer un sitio con muchas fotos y mantener un catálogo en dos idiomas. Con Astro pude construir las páginas a partir de componentes reutilizables y definir los servicios compartidos en TypeScript. Así, el estudio puede destacar un tratamiento en la portada, enlazarlo con su ficha y describirlo para los buscadores usando el mismo precio.
+
+<GenericCard
+	cards={projectCards}
+	gridColumns={3}
+	cardsClass="grid-cols-1! md:grid-cols-2! xl:grid-cols-3!"
+	showIcons={true}
+	photo={{ src: "/assets/YLG_Light.webp", alt: "Página de inicio y galería de diseños de YLG Studio Nails" }}
+/>
+
+## Qué aporta el sitio al estudio
+
+Quien visita la web puede ver ejemplos del trabajo del estudio, encontrar el servicio que busca y pasar a la plataforma de reservas con la información necesaria para elegir una cita. El estudio también puede publicar artículos y dirigir a sus lectores al catálogo o a la página de contacto. La navegación y el diseño son coherentes en los dos idiomas.
+
+Si tu negocio necesita un sitio bilingüe con catálogo de servicios, contenido editorial o un proveedor de reservas que ya utilizas, puedo ayudarte a diseñarlo y desarrollarlo en Astro. [Visitar el sitio](https://www.ylgstudionails.com/es/) · [Hablemos de tu proyecto en Astro](/es/#contact)

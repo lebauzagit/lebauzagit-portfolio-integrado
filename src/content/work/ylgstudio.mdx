@@ -1,16 +1,86 @@
 ---
-title: YLGStudio
+title: YLG Studio Nails
 publishDate: 2024
 img: /assets/YLG_Dark.webp
-img_alt: YLGStudio branding and portfolio showcase
+img_alt: YLG Studio Nails website homepage
 description: |
-  YLGStudio
-tags: []
+  I built a bilingual Astro website for a nail studio in Brandon, Florida, with a responsive gallery, a shared service catalog, and a mobile booking flow.
+tags:
+  - Astro
+  - TypeScript
+  - Bilingual Website
+  - Local Business
 ---
 
-## YLGStudio
+import GenericCard from '../../components/GenericCard.astro'
 
-![YLGStudio Light Mode](/assets/YLG_Light.webp alt="YLGStudio Light Mode")
-![YLGStudio Dark Mode](/assets/YLG_Dark.webp alt="YLGStudio Dark Mode")
+export const projectCards = [
+	{
+		title: "Astro Frontend Architecture",
+		icon: "rocket-launch",
+		content: [
+			"The homepage is composed of Astro components for the gallery, featured services, editorial previews, and booking. A shared layout carries the header, footer, and page metadata across home, services, contact, and blog routes.",
+			"Small client-side scripts handle interactions such as browsing gallery images and showing the mobile booking bar."
+		]
+	},
+	{
+		title: "Responsive Photography",
+		icon: "atom",
+		content: [
+			"I used Astro’s image component to serve WebP variants at multiple widths. Each placement declares its display size so the browser can choose a suitable file for the viewport.",
+			"The hero prioritizes its main image, while photos farther down the page load lazily. Captions and alternative text are available in both languages."
+		]
+	},
+	{
+		title: "A Shared Service Catalog",
+		icon: "stack",
+		content: [
+			"A typed catalog stores the price and duration of each manicure and pedicure. The full list, homepage highlights, and structured data draw from the same records, so a price edit can reach all three from one place.",
+			"Featured treatments link directly to their entries in the catalog. A client interested in gel polish can go straight from the homepage to that service."
+		]
+	},
+	{
+		title: "Bilingual Routing and SEO",
+		icon: "code",
+		content: [
+			"Astro routes English and Spanish content under /en/ and /es/. The shared layout sets the page language, canonical URL, and language alternates so each version has its own address.",
+			"The site publishes a sitemap and NailSalon structured data for the studio’s location, featured services, and appointment link."
+		]
+	},
+	{
+		title: "Mobile Booking Flow",
+		icon: "technologies",
+		content: [
+			"On mobile, a compact booking bar appears when the main appointment buttons are out of view. That keeps the next step within reach while visitors scroll through the gallery or read about a treatment.",
+			"The link hands off to the studio’s scheduling provider, where clients choose a treatment and check available times."
+		]
+	},
+	{
+		title: "Editorial Content and Local Contact",
+		icon: "experience",
+		content: [
+			"Astro renders individual blog posts on the server, with links between published translations where available. The homepage surfaces recent articles alongside the studio’s services.",
+			"The contact page brings directions, phone, email, and social links together for clients who want to ask a question or find the studio before booking."
+		]
+	}
+]
 
-Minimal entry - complete project details available upon request.
+## Building a bilingual booking website with Astro
+
+I built the public-facing website for **YLG Studio Nails**, a manicure and pedicure studio in Brandon, Florida. A new client might arrive with a design in mind, a budget, or a free afternoon. I organized the site so they could start with photos, compare treatments by price and duration, then check availability in English or Spanish.
+
+The development challenge was keeping an image-heavy site easy to browse and a bilingual catalog easy to maintain. With Astro, I could compose the pages from reusable components and use TypeScript for shared service data. That lets the studio feature a treatment on the homepage, link to its full listing, and describe it to search engines using the same underlying price.
+
+<GenericCard
+	cards={projectCards}
+	gridColumns={3}
+	cardsClass="grid-cols-1! md:grid-cols-2! xl:grid-cols-3!"
+	showIcons={true}
+	photo={{ src: "/assets/YLG_Light.webp", alt: "Homepage and nail art gallery for YLG Studio Nails" }}
+/>
+
+## What the site delivers
+
+A client can see examples of the studio’s work, find the right service, and reach the booking platform with enough information to choose an appointment. The studio can also publish articles and link readers back to the catalog or contact page. Those paths share the same navigation and visual language across both locales.
+
+If your business needs a bilingual site with a service catalog, editorial content, or an existing booking provider, I can help design and build it in Astro. [View the live site](https://www.ylgstudionails.com/en/) · [Discuss your Astro project](/#contact)
