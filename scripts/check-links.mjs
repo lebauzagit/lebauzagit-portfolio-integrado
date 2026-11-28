@@ -1,3 +1,24 @@
-import {readFileSync} from 'node:fs';
-const b=JSON.parse(readFileSync(new URL('../src/config/brand.json',import.meta.url)));
-for(const [name,p] of Object.entries(b.profiles)){try{const r=await fetch(p.url,{method:'GET',redirect:'manual',signal:AbortSignal.timeout(Number(process.env.LINK_TIMEOUT_MS||15000))});const s=r.status;console.log(name,s,s===401||s===403?'authentication/access restricted':s===429?'rate limited':s>=300&&s<400?'redirect':s===404||s===410?'not found':s>=200&&s<300?'HTTP success (identity not verified)':'inconclusive');await r.body?.cancel();}catch(e){console.log(name,'network unavailable or timeout',e.message);}}
+import { readFileSync } from 'node:fs';
+
+const brand = JSON.parse(readFileSync(new URL('../src/config/brand.json', import.meta.url)));
+const profiles = { ...brand.profiles, ...brand.additionalProfiles };
+const timeout = Number(process.env.LINK_TIMEOUT_MS || 15000);
+
+function describeStatus(status) {
+  if (status === 401 || status === 403) return 'authentication/access restricted';
+  if (status === 429) return 'rate limited';
+  if (status === 404 || status === 410) return 'not found';
+  if (status >= 300 && status < 400) return 'redirect';
+  if (status >= 200 && status < 300) return 'HTTP success (identity not verified)';
+  return 'inconclusive';
+}
+
+for (const [name, { url }] of Object.entries(profiles)) {
+  try {
+    const response = await fetch(url, { redirect: 'manual', signal: AbortSignal.timeout(timeout) });
+    console.log(name, response.status, describeStatus(response.status));
+    await response.body?.cancel();
+  } catch (error) {
+    console.log(name, 'network unavailable or timeout', error.message);
+  }
+}

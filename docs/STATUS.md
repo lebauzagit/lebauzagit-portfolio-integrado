@@ -2,6 +2,14 @@
 
 ## 2026-11-27
 
+The owner confirmed `https://lebauzagit.vercel.app` as the production origin. Astro configuration, canonical and alternate URLs, social metadata, JSON-LD, sitemap, generated robots file, and brand drafts use that origin. Prepared Vercel trailing-slash routing and a permanent path-preserving Netlify redirect. The README records the release order and live checks. The changes are local. Production deployment, the live Netlify redirect, and the GitHub homepage field remain pending.
+
+Brand as Code now supplies the homepage portrait and the existing primary and dark-mode accent colors. CI checks all committed generated artifacts for drift and verifies all eight project routes, homepage links, and SEO output after building. Profile validation and HTTP checks now cover Instagram and YouTube. `pnpm test`, `pnpm check`, `pnpm build`, and `pnpm test:build` passed. The public link check returned 200 for five URLs and 301 for LinkedIn. Logo and banner artwork is still maintained manually. X remains pending in the brand configuration.
+
+Audited hosting and Brand as Code. `lebauzagit.vercel.app` returns HTTP 200 for the English and Spanish homepages, both YLG Studio routes, `robots.txt`, the sitemap, and the social image. Vercel serves the sampled project route both with and without a trailing slash. GitHub records a successful Vercel deployment for `34275a6`, but the repository homepage points to a Vercel alias that returns HTTP 404. The live Vercel canonical, Open Graph image URL, robots sitemap reference, and sitemap entries still point to Netlify. The Netlify homepages return HTTP 200, while the tested YLG Studio routes, sitemap, robots file, and social image return HTTP 404 there. The canonical domain and hosting configuration await the owner's confirmation.
+
+Brand as Code powers the bilingual identity, technology stack, social links, and SEO through `src/config/brand.json`. It generates text drafts for GitHub, LinkedIn, and X plus an identity JSON export. The visual assets, CSS colors, portrait references, and hosting configuration still have independently maintained values. CI exercises generation and checks one draft for repeatability. It does not compare all generated artifacts against Git, test expected portfolio routes, or check Instagram and YouTube links. The X migration remains pending. Local `pnpm test`, `pnpm check`, and `pnpm build` passed, and GitHub CI passed for `34275a6`.
+
 Updated the YouTube channel link to the user-confirmed `@lebauzagit` handle in the brand configuration and generated identity. `pnpm test`, `pnpm check`, and `pnpm build` passed. Verified the new-tab link on all ten generated pages with navigation.
 
 Updated external links in navigation, contact, the footer, and both YLG Studio pages to open in a new tab. `pnpm test`, `pnpm check`, and `pnpm build` passed. Verified 76 external links and 101 internal links across the 11 generated pages.

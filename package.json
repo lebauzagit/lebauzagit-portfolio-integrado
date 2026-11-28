@@ -9,6 +9,7 @@
     "astro": "astro",
     "check": "astro check",
     "test": "node --test scripts/brand.test.mjs",
+    "test:build": "node --test scripts/build.test.mjs",
     "brand:generate": "node scripts/generate.mjs",
     "brand:validate": "node scripts/validate.mjs",
     "brand:check-links": "node scripts/check-links.mjs"

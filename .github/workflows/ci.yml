@@ -14,5 +14,10 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
+      - name: Check generated brand artifacts
+        run: |
+          git status --short -- brand/generated
+          test -z "$(git status --porcelain -- brand/generated)"
       - run: pnpm check
       - run: pnpm build
+      - run: pnpm test:build

@@ -4,7 +4,7 @@
 
 *Beyond the interface. Into the architecture.*
 
-[Portfolio](https://lebauzagit.netlify.app) · [LinkedIn](https://www.linkedin.com/in/lebauzagit/)
+[Portfolio](https://lebauzagit.vercel.app) · [LinkedIn](https://www.linkedin.com/in/lebauzagit/)
 
 ## About
 

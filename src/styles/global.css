@@ -292,7 +292,7 @@ h5 {
 }
 
 /* Brand accents and keyboard/reduced motion support */
-:root { --accent-regular: #0369a1; --accent-dark: #0d1726; }
-:root.theme-dark { --accent-regular: #38bdf8; --gray-999: #0d1726; }
+:root { --accent-regular: #0369a1; --accent-dark: var(--brand-primary); }
+:root.theme-dark { --accent-regular: var(--brand-accent); --gray-999: var(--brand-primary); }
 :focus-visible { outline: 3px solid var(--accent-regular); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }

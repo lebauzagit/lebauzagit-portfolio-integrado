@@ -13,6 +13,7 @@ import TechnologyStack from '../../components/TechnologyStack.astro';
 import Skills from '../../components/Skills.astro';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import brand from '../../config/brand.json';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -120,7 +121,7 @@ const aboutPhoto = {
 					alt="Luis Enrique Bauza sonriendo, de traje azul trabajando en su computadora portátil"
 					width="480"
 					height="620"
-					src="/assets/me-at-work.webp"
+					src={brand.avatar}
 				/>
 			</header>
 

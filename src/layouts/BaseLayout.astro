@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 // Component Imports
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
+import brand from '../config/brand.json';
 import { getLangFromUrl } from '../i18n/utils';
 import { defaultLang } from '../i18n/ui';
 
@@ -16,9 +17,10 @@ interface Props {
 
 const { title, description } = Astro.props;
 const lang = getLangFromUrl(Astro.url) ?? defaultLang;
+const { primary, accent } = brand.palette;
 ---
 
-<html lang={lang}>
+<html lang={lang} style={{ '--brand-primary': primary, '--brand-accent': accent }}>
 	<head>
 		<MainHead title={title} description={description} />
 	</head>

@@ -3,3 +3,9 @@
   publish = "dist"
 [build.environment]
   NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/*"
+  to = "https://lebauzagit.vercel.app/:splat"
+  status = 301
+  force = true
