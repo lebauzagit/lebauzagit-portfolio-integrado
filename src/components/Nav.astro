@@ -28,14 +28,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	{ label: 'YouTube', href: brand.additionalProfiles.youtube.url, icon: 'youtube-logo' },
 ];
 
-/** Test if a link is pointing to the current page. */
-const isCurrentPage = (href: string) => {
-	let pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
-	if (pathname.at(0) !== '/') pathname = '/' + pathname;
-	if (pathname.at(-1) !== '/') pathname += '/';
-	const hrefPath = href.split('#')[0] || '/';
-	return pathname === hrefPath || (hrefPath !== '/' && pathname.startsWith(hrefPath));
-};
+const currentLocation = Astro.url.pathname === `${prefix}/` ? `${prefix}/#home` : null;
 ---
 
 <nav>
@@ -58,7 +51,7 @@ const isCurrentPage = (href: string) => {
 			{
 				textLinks.map(({ label, href }) => (
 					<li>
-						<a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>
+						<a aria-current={href === currentLocation ? 'location' : null} class="link" href={href}>
 							{label}
 						</a>
 					</li>
@@ -85,7 +78,7 @@ const isCurrentPage = (href: string) => {
 			{
 				textLinks.map(({ label, href }) => (
 					<li>
-						<a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>
+						<a aria-current={href === currentLocation ? 'location' : null} class="link" href={href}>
 							{label}
 						</a>
 					</li>
@@ -150,84 +143,51 @@ const isCurrentPage = (href: string) => {
 	}
 	customElements.define('menu-button', MenuButton);
 
-	// Track active section on scroll
-	document.addEventListener('DOMContentLoaded', () => {
-		const sections = document.querySelectorAll('section[id]');
-		const navLinks = document.querySelectorAll('nav a[href*="#"]');
-
-		if (sections.length === 0 || navLinks.length === 0) return;
-
-		// Remove focus from links after clicking to prevent hover state
-		navLinks.forEach((link) => {
-			link.addEventListener('click', (e) => {
-				setTimeout(() => {
-					(e.target as HTMLElement).blur();
-				}, 100);
-			});
+	function trackActiveSection() {
+		const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav .nav-items .link'));
+		const sections = links.flatMap((link) => {
+			if (link.pathname !== window.location.pathname) return [];
+			const section = document.getElementById(link.hash.slice(1));
+			return section ? [{ link, section }] : [];
 		});
+		if (!sections.length) return;
 
-		const observerOptions = {
-			root: null,
-			rootMargin: '-20% 0px -70% 0px', // Trigger when section is 20% from top
-			threshold: 0
-		};
+		let activeLink = links.find((link) => link.hasAttribute('aria-current'));
+		let frame: number | undefined;
 
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const id = entry.target.getAttribute('id');
-					
-					// Remove active state from all links
-					navLinks.forEach((link) => {
-						link.removeAttribute('aria-current');
-						link.classList.remove('active');
-						// Force style recalculation
-						(link as HTMLElement).style.removeProperty('color');
-						(link as HTMLElement).style.removeProperty('background-color');
-					});
+		function updateActiveSection() {
+			frame = undefined;
+			const { scrollY, innerHeight } = window;
+			const maxScroll = document.documentElement.scrollHeight - innerHeight;
+			const readingLine = innerHeight * 0.2;
+			// A short last section may never reach the reading line.
+			const last = sections[sections.length - 1];
+			const lastVisible = scrollY > 0 && last.section.getBoundingClientRect().bottom <= innerHeight;
+			const atBottom = maxScroll > 1 && scrollY >= maxScroll - 1;
+			const current = atBottom || lastVisible
+				? last
+				: sections.findLast(({ section }) => section.getBoundingClientRect().top <= readingLine);
+			const nextLink = (current ?? sections[0]).link;
 
-					// Add active state to the corresponding link
-					const activeLink = document.querySelector(`nav a[href$="#${id}"]`);
-					if (activeLink) {
-						activeLink.setAttribute('aria-current', 'page');
-					}
-				}
-			});
-		}, observerOptions);
+			if (activeLink === nextLink) return;
+			activeLink?.removeAttribute('aria-current');
+			nextLink.setAttribute('aria-current', 'location');
+			activeLink = nextLink;
+		}
 
-		// Observe all sections
-		sections.forEach((section) => observer.observe(section));
+		function scheduleUpdate() {
+			if (frame === undefined) frame = requestAnimationFrame(updateActiveSection);
+		}
 
-		// Set initial active state based on scroll position or hash
-		const setInitialActive = () => {
-			// Clean all links first
-			navLinks.forEach(link => {
-				link.removeAttribute('aria-current');
-				link.classList.remove('active');
-				(link as HTMLElement).style.removeProperty('color');
-				(link as HTMLElement).style.removeProperty('background-color');
-			});
+		window.addEventListener('scroll', scheduleUpdate, { passive: true });
+		window.addEventListener('resize', scheduleUpdate);
+		window.addEventListener('pageshow', scheduleUpdate);
+		const observer = new ResizeObserver(scheduleUpdate);
+		sections.forEach(({ section }) => observer.observe(section));
+		updateActiveSection();
+	}
 
-			if (window.location.hash) {
-				const targetId = window.location.hash.substring(1);
-				const activeLink = document.querySelector(`nav a[href$="#${targetId}"]`);
-				if (activeLink) {
-					activeLink.setAttribute('aria-current', 'page');
-				}
-			} else {
-				// Default to first link (home)
-				const firstLink = navLinks[0] as HTMLElement;
-				if (firstLink) {
-					firstLink.setAttribute('aria-current', 'page');
-				}
-			}
-		};
-
-		setInitialActive();
-
-		// Update active state when hash changes
-		window.addEventListener('hashchange', setInitialActive);
-	});
+	trackActiveSection();
 </script>
 
 <style>
@@ -437,17 +397,12 @@ const isCurrentPage = (href: string) => {
 		}
 
 		.link:hover,
-		.link:focus {
+		.link:focus-visible {
 			color: var(--gray-100);
 			background-color: var(--accent-subtle-overlay);
 		}
 
-		.link[aria-current='page'] {
-			color: var(--accent-text-over);
-			background-color: var(--accent-regular);
-		}
-
-		.link[aria-current='page']:visited {
+		.link[aria-current='location'] {
 			color: var(--accent-text-over);
 			background-color: var(--accent-regular);
 		}
@@ -475,7 +430,7 @@ const isCurrentPage = (href: string) => {
 		}
 	}
 	@media (forced-colors: active) {
-		.link[aria-current='page'] {
+		.link[aria-current='location'] {
 			color: SelectedItem;
 		}
 	}

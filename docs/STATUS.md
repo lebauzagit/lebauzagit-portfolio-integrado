@@ -1,5 +1,11 @@
 # Status / handoff — version 1.0
 
+## 2026-11-28
+
+Fixed the top navigation scroll highlight on both homepages. Selection follows the visible section, restores Home on return to the top, and reaches a short Contact section once it fits in the viewport or the page reaches the bottom. Verified all four sections in Chrome in both languages at desktop and mobile widths, plus direct section links and keyboard focus. `pnpm test`, `pnpm check`, `pnpm build`, and `pnpm test:build` passed.
+
+Verified the production Vercel deployment after the canonical update. Root `/robots.txt` and `/sitemap.xml` respond with HTTP 200. Requests with a trailing slash redirect to the file URLs with HTTP 308, and their `/es/` variants return HTTP 404. `/work/ylgstudio` redirects to the trailing-slash page. The robots file references the Vercel sitemap, which lists ten canonical URLs. The old Netlify URLs for robots and sitemap still return HTTP 404.
+
 ## 2026-11-27
 
 The owner confirmed `https://lebauzagit.vercel.app` as the production origin. Astro configuration, canonical and alternate URLs, social metadata, JSON-LD, sitemap, generated robots file, and brand drafts use that origin. Prepared Vercel trailing-slash routing and a permanent path-preserving Netlify redirect. The README records the release order and live checks. The changes are local. Production deployment, the live Netlify redirect, and the GitHub homepage field remain pending.
